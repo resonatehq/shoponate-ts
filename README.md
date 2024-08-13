@@ -53,3 +53,5 @@ Change directories into the `ui` directory and run:
 ```shell
 npm run dev -- --open
 ```
+
+You should now have the UI running on port 5173.
