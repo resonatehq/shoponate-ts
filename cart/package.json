@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/service.js",
-    "dev": "ts-node service.ts",
+    "dev": "npx tsx service.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "cully.wakelin@resonatehq.io",
@@ -19,10 +19,11 @@
     "@types/node": "^22.1.0",
     "@types/uuid": "^10.0.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.0",
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "@resonatehq/sdk": "^0.6.0",
+    "@resonatehq/sdk": "^0.6.2",
     "better-sqlite3": "^11.1.2",
     "cors": "^2.8.5",
     "express": "^4.19.2",

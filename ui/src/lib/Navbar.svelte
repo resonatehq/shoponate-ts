@@ -33,4 +33,7 @@
     color: #000000;
     cursor: pointer;
   }
+  nav a:hover {
+    background-color: #efefef;
+  }
 </style>
