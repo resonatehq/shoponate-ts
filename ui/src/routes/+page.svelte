@@ -1,6 +1,8 @@
 <script>
   import { onMount } from "svelte";
   import { goto } from "$app/navigation";
+  import { v4 as uuidv4 } from "uuid";
+  import { getCookie, checkForCookie, timeStamp } from "$lib/shopUtils";
 
   const cartService = `http://localhost:5172`;
   let cartId = "";
@@ -18,12 +20,13 @@
 
   async function addToCart(fruit) {
     const cartId = getCookie("cart_id");
-
+    const callId = `add-${cartId}-${fruit.name}-${timeStamp()}`;
+    fruit.id = uuidv4();
     try {
       const response = await fetch(`${cartService}/cart/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cartId: cartId, fruit: fruit }),
+        body: JSON.stringify({ callId: callId, cartId: cartId, fruit: fruit }),
       });
 
       // Check if the response is ok (status code 200-299)
@@ -46,24 +49,8 @@
     }
   }
 
-  const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) {
-      const cookie = parts.pop().split(";").shift();
-      console.log(`Found cookie: ${cookie}`);
-      cartId = cookie;
-      return cookie;
-    }
-  };
-
   onMount(() => {
-    if (!getCookie("cart_id")) {
-      const id = Math.random().toString(36).substr(2, 9);
-      const cookie = `cart_id=${id}; path=/`;
-      document.cookie = cookie;
-      console.log(`Created cookie: ${cookie}`);
-    }
+    cartId = checkForCookie("cart_id");
   });
 </script>
 
