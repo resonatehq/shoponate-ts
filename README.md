@@ -6,7 +6,7 @@ This repository contains an example application that uses the Resonate HQ TypeSc
 The application simulates an online fruit shop.
 You can add fruit to your cart and simulate a check out.
 
-![Fruit shop animated gif](./thefruitshop.gif)
+![Fruit shop animated gif](https://github.com/resonatehq/shoponate-ts/blob/main/thefruitshop.gif)
 
 This provides a basic example of how to integrate the Resonate SDK into your application.
 
